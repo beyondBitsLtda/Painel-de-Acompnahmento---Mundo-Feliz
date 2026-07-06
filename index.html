@@ -1273,19 +1273,18 @@ const CONFIG = {
   // ─── Identificação de listas como "fases" ───
   // Quadro tem listas tipo "Fase 1 - Setup...", "Fase 2: Desenvolvimento...", etc.
   lists: {
-    sprintPrefix: 'Fase',
-    // Limpa "Fase 1 - ", "Fase 2: ", "Fase 3: " etc. do título exibido
-    sprintNameCleanRegex: /^Fase \d+[\s:\-]+/,
+    sprintPrefix: 'Sprint',
+    // Limpa "Sprint 01 ", "Sprint 02 " etc. do início, mantendo o resto (ex: "(Semana 01 e Semana 02)")
+    sprintNameCleanRegex: /^Sprint \d+\s*/,
     excludedListNames: [],
   },
 
   // ─── Labels especiais ───
-  // Neste quadro cada marco tem sua própria label numerada (Marco 01, Marco 02...)
-  // — não há uma label genérica "MARCO". Por isso usamos marcoLabelRegex.
+  // Neste quadro não há labels de "Marco" definidas — só "AGUARDANDO"
   labels: {
-    marcoName: '',                          // não há label fixa "MARCO"
-    marcoLabelRegex: /^marco\s*\d+/i,       // pega "Marco 01", "Marco 02", "Marco 03", "Marco 04"
-    marcoNameRegex: null,                   // nomes dos cards não começam com "Marco"
+    marcoName: '',                          // não há label fixa "MARCO" neste quadro
+    marcoLabelRegex: /^marco\s*\d*/i,       // caso você crie labels "Marco" ou "Marco 01" no futuro
+    marcoNameRegex: null,
     waitingName: 'AGUARDANDO',              // existe nesse quadro
     tbdName: '',                            // não existe nesse quadro
   },
@@ -1296,7 +1295,7 @@ const CONFIG = {
   // ─── Textos do projeto ───
   project: {
     titleOverride: '',  // vazio = usa o nome do quadro do Trello
-    eyebrow: 'Site profissional — Montador de Móveis',
+    eyebrow: 'Site profissional — Site Mundo Feliz',
     description: 'Acompanhe em tempo real o progresso do desenvolvimento do site. ' +
                  'Cada fase representa uma etapa do projeto, com marcos que indicam entregas importantes.',
     sprintWordSingular: 'Fase',
